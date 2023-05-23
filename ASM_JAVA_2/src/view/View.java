@@ -15,7 +15,6 @@ import javax.swing.table.DefaultTableModel;
 import clock_theard.Clock;
 
 public class View extends javax.swing.JFrame {
-
     DaoEmployee dao = new DaoEmployee();
     String path = "";
     int rowIndex; 
@@ -610,9 +609,12 @@ public class View extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         if (tblEmpolyee.getSelectedRow() > -1) {
-            update();
-            clearForm();
-            tblEmpolyee.clearSelection();
+            if (validateForm() == true) {
+                  update();
+                  clearForm();
+                  tblEmpolyee.clearSelection();
+
+            }
         } else {
             if (validateForm() == false) {
                 JOptionPane.showMessageDialog(this, "Thêm đữ liệu thất bại", "Thông báo", 2);
