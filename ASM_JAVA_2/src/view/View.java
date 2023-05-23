@@ -648,6 +648,7 @@ public class View extends javax.swing.JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         try {
             dao.saveFile();
+            JOptionPane.showMessageDialog(this, "Lưu và thoát thành công", "Thông báo", 2);
             System.exit(0);
         } catch (IOException ex) {
             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
@@ -657,6 +658,7 @@ public class View extends javax.swing.JFrame {
 
     private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
         try {
+            JOptionPane.showMessageDialog(this, "Mở file thành công", "Thông báo", 2);
             dao.openFile();
             fillToTable();
             setRecord();
@@ -682,6 +684,8 @@ public class View extends javax.swing.JFrame {
             if (validateForm() == true) {
                   update();
                   clearForm();
+                  JOptionPane.showMessageDialog(this, "Cập nhật dữ liệu thành công", "Thông báo", 2);
+
                   tblEmpolyee.clearSelection();
 
             }
@@ -694,6 +698,8 @@ public class View extends javax.swing.JFrame {
             } else {
                 SaveData();
                 setRecord();
+              JOptionPane.showMessageDialog(this, "Thêm đữ liệu thành công ", "Thông báo", 2);
+
                 clearForm();
             }
         }
