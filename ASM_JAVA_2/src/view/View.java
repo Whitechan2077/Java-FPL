@@ -78,7 +78,8 @@ public class View extends javax.swing.JFrame {
     public boolean validateForm() {
 
         boolean checkMail = true, checkName = true, checkID = true, checkSalary = true, checkAge = true, checkValidate = false, checkImage = true;
-        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        if (tblEmpolyee.getSelectedRow() == -1) {
+            String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         if (txtMaNhanVien.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống mã", "Thông báo", 1);
             checkID = false;
@@ -138,8 +139,77 @@ public class View extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn ảnh của nhân viên", "Thông báo", 2);
             checkImage = false;
         }
+        }
+        else{
+            String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        if (txtMaNhanVien.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Không để trống mã", "Thông báo", 1);
+            checkID = false;
+        } else {
+          if (dao.getData().get(tblEmpolyee.getSelectedRow()).getMaNhanVien().equals(txtMaNhanVien.getText()) ) {
+            checkID = true;        
+            }
+          else{
+            for (Employee x : dao.getData()) {
+                if(x.getMaNhanVien().equals(txtMaNhanVien.getText())){
+                    checkID = false;
+                    JOptionPane.showMessageDialog(this, "Không để trùng mã", "Thông báo", 1);
+                }
+            }
+          }
+        }
+        if (txtTenNhanVien.getText().trim().equals("")) {
+            checkName = false;
+            JOptionPane.showMessageDialog(this, "Không để trống tên", "Thông báo", 1);
+        }
+        if (txtTuoi.getText().trim().equals("")) {
+            checkAge = false;
+            JOptionPane.showMessageDialog(this, "Không để trống tuổi", "Thông báo", 1);
+        } else {
+            try {
+                if (Integer.parseInt(txtTuoi.getText()) < 16 || Integer.parseInt(txtTuoi.getText()) > 55) {
+                    checkAge = false;
+                    JOptionPane.showMessageDialog(this, "Tuổi phải từ 16-55", "Thông báo", 1);
+                }
+            } catch (NumberFormatException e) {
+                checkAge = false;
+                JOptionPane.showMessageDialog(this, "Vui Lòng nhập đúng định dạng số", "Thông báo", 1);
+            }
+        }
+        if (txtEmail.getText().trim().equals("")) {
+            checkMail = false;
+            JOptionPane.showMessageDialog(this, "Không để trống Email", "Thông báo", 1);
+        } else {
+            if (txtEmail.getText().matches(emailRegex) == false) {
+                checkMail = false;
+                JOptionPane.showMessageDialog(this, "Email không dúng định dạng", "Thông báo", 1);
+            }
+        }
+        if (txtLuong.getText().trim().equals("")) {
+            checkSalary = false;
+            JOptionPane.showMessageDialog(this, "Không để trống Lương", "Thông báo", 1);
+        } else {
+            try {
+                if (Double.parseDouble(txtLuong.getText()) < 5000000) {
+                    checkSalary = false;
+                    JOptionPane.showMessageDialog(this, "Lương phải lớn hơn 5000000 VND", "Thông báo", 1);
+                }
+
+            } catch (NumberFormatException e) {
+                checkSalary = false;
+                JOptionPane.showMessageDialog(this, "Vui Lòng nhập đúng định dạng số", "Thông báo", 1);
+
+            }
+        }
+        if (path.equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn ảnh của nhân viên", "Thông báo", 2);
+            checkImage = false;
+        }
+            
+        }
         if (checkAge == true &&  checkMail == true && checkName == true && checkID == true && checkSalary == true&& checkImage == true) {
             checkValidate = true;
+            
         }
         return checkValidate;
     }
@@ -614,6 +684,9 @@ public class View extends javax.swing.JFrame {
                   clearForm();
                   tblEmpolyee.clearSelection();
 
+            }
+            else{
+               JOptionPane.showMessageDialog(this, "Cập nhật dữ liệu thất bại", "Thông báo", 2);
             }
         } else {
             if (validateForm() == false) {
