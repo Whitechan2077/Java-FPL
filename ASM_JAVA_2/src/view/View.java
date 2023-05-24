@@ -764,6 +764,7 @@ public class View extends javax.swing.JFrame {
         try {
             rowIndex = 0;
             tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+            showData(rowIndex);
         } catch (Exception e) {
            JOptionPane.showMessageDialog(this, "Trong bảng không có đữ liệu", "Thông báo", 1);
         }
@@ -825,7 +826,7 @@ public class View extends javax.swing.JFrame {
                     txtMaNhanVien.setText(dao.find(maNV).getMaNhanVien());
                     txtEmail.setText(dao.find(maNV).getEmail());
                     txtTuoi.setText(String.valueOf(age));
-                    txtLuong.setText(String.valueOf(salary));
+                    txtLuong.setText(String.valueOf((long)salary));
                     ImageIcon iI = new ImageIcon(dao.find(maNV).getImage());
                     Image img = iI.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH);
                     lblImage.setIcon(new ImageIcon(img));
