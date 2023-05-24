@@ -756,6 +756,9 @@ public class View extends javax.swing.JFrame {
             dao.openFile();
             fillToTable();
             setRecord();
+            rowIndex = 0;
+            showData(rowIndex);
+            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Có lỗi trong quá trình load file", "Thông báo", 2);
 
