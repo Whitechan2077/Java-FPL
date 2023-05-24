@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import clock_theard.Clock;
+import custom_exception.ObjectNotFoundException;
 
 public class View extends javax.swing.JFrame {
 
