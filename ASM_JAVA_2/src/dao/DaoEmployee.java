@@ -15,6 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Employee;
 import custom_exception.ObjectNotFoundException;
+import java.util.Collections;
+import java.util.Comparator;
 /**
  *
  * @author buidu
@@ -88,5 +90,27 @@ public class DaoEmployee implements Dao<Employee,Integer,String,Object,Double>{
         listEmployee = (List<Employee>)ois.readObject();
         fos.close();
         ois.close();
+    }
+
+    @Override
+    public void sortByName() {
+        Collections.sort(listEmployee, (o1, o2) -> o1.getTenNhanVien().compareToIgnoreCase(o2.getTenNhanVien()));
+    }
+
+    @Override
+    public void sortBySalary() {
+        Comparator<Employee> comp = new Comparator<Employee>() {
+            @Override
+            public int compare(Employee o1, Employee o2) {
+                if (o1.getLuong()>o2.getLuong()) {
+                    return 1;
+                }
+                if (o1.getLuong()<o2.getLuong()) {
+                    return -1;
+                }
+                else return 0 ;
+            }
+        };
+        Collections.sort(listEmployee,comp);
     }
 }

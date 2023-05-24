@@ -30,7 +30,7 @@ public class View extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tblEmpolyee.getModel();
         model.setRowCount(0);
         for (Employee x : dao.getData()) {
-            model.addRow(new Object[]{x.getMaNhanVien(), x.getTenNhanVien(), x.getTuoi(), x.getEmail(), x.getLuong()});
+            model.addRow(new Object[]{x.getMaNhanVien(), x.getTenNhanVien(), x.getTuoi(), x.getEmail(), (long)x.getLuong()});
         }
     }
 
@@ -237,54 +237,61 @@ public class View extends javax.swing.JFrame {
     }
 
     public void pre() {
-         if (tblEmpolyee.getSelectedRow()>-1) {
-            try {
-            rowIndex =tblEmpolyee.getSelectedRow();
-            rowIndex--;
-            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
-            showData(rowIndex);
+        try {
+            if (tblEmpolyee.getSelectedRow() > -1) {
+                try {
+                    rowIndex = tblEmpolyee.getSelectedRow();
+                    rowIndex--;
+                    tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+                    showData(rowIndex);
+                } catch (Exception e) {
+                    rowIndex = tblEmpolyee.getRowCount() - 1;
+                    tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+                    showData(rowIndex);
+                }
+            } else {
+                try {
+                    rowIndex--;
+                    tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+                    showData(rowIndex);
+                } catch (Exception e) {
+                    rowIndex = tblEmpolyee.getRowCount() - 1;
+                    tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+                    showData(rowIndex);
+                }
+            }
         } catch (Exception e) {
-             rowIndex=tblEmpolyee.getRowCount()-1;
-            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
-             showData(rowIndex);
-        }
-        }
-        else{
-            try {
-            rowIndex--;
-            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
-             showData(rowIndex);
-        } catch (Exception e) {
-            rowIndex=tblEmpolyee.getRowCount()-1;
-            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
-             showData(rowIndex);
-        }
+            JOptionPane.showMessageDialog(this, "Trong bảng không có đữ liệu", "Thông báo", 1);
+
         }
     }
 
     public void next() {
-        if (tblEmpolyee.getSelectedRow()>-1) {
-            try {
-            rowIndex =tblEmpolyee.getSelectedRow();
-            rowIndex++;
-            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
-            showData(rowIndex);
+        try {
+            if (tblEmpolyee.getSelectedRow() > -1) {
+                try {
+                    rowIndex = tblEmpolyee.getSelectedRow();
+                    rowIndex++;
+                    tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+                    showData(rowIndex);
+                } catch (Exception e) {
+                    rowIndex = 0;
+                    tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+                    showData(rowIndex);
+                }
+            } else {
+                try {
+                    rowIndex++;
+                    tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+                    showData(rowIndex);
+                } catch (Exception e) {
+                    rowIndex = 0;
+                    tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+                    showData(rowIndex);
+                }
+            }
         } catch (Exception e) {
-             rowIndex=0;
-            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
-             showData(rowIndex);
-        }
-        }
-        else{
-            try {
-            rowIndex++;
-            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
-             showData(rowIndex);
-        } catch (Exception e) {
-            rowIndex=0;
-            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
-             showData(rowIndex);
-        }
+            JOptionPane.showMessageDialog(this, "Trong bảng không có đữ liệu", "Thông báo", 1);
         }
     }
 
@@ -326,6 +333,8 @@ public class View extends javax.swing.JFrame {
         lblImage = new javax.swing.JLabel();
         btnBrowserImage = new javax.swing.JButton();
         lblClock = new javax.swing.JLabel();
+        btnSortByName = new javax.swing.JToggleButton();
+        btnSortBySalary = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý nhân viên");
@@ -584,12 +593,15 @@ public class View extends javax.swing.JFrame {
                 .addComponent(jButton8)
                 .addGap(18, 18, 18)
                 .addComponent(btnPre)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNext)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(jButton9)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnNext, btnPre, jButton8, jButton9});
+
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -637,6 +649,20 @@ public class View extends javax.swing.JFrame {
         lblClock.setForeground(new java.awt.Color(204, 0, 51));
         lblClock.setText("00:00:00");
 
+        btnSortByName.setText("Sort by name");
+        btnSortByName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSortByNameActionPerformed(evt);
+            }
+        });
+
+        btnSortBySalary.setText("Sort by salary");
+        btnSortBySalary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSortBySalaryActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -649,7 +675,7 @@ public class View extends javax.swing.JFrame {
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                                 .addComponent(pnForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -667,6 +693,12 @@ public class View extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblClock, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(btnSortByName, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSortBySalary, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -680,14 +712,18 @@ public class View extends javax.swing.JFrame {
                     .addComponent(pnForm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                         .addComponent(btnBrowserImage))
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSortByName)
+                    .addComponent(btnSortBySalary))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -723,8 +759,12 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOpenActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        rowIndex = 0;
-        tblEmpolyee.setRowSelectionInterval(rowIndex,rowIndex);
+        try {
+            rowIndex = 0;
+            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+        } catch (Exception e) {
+           JOptionPane.showMessageDialog(this, "Trong bảng không có đữ liệu", "Thông báo", 1);
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
@@ -805,9 +845,14 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPreActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        rowIndex = tblEmpolyee.getRowCount()-1;
-        tblEmpolyee.setRowSelectionInterval(rowIndex,rowIndex);
-        showData(rowIndex);
+        try {
+            rowIndex = tblEmpolyee.getRowCount() - 1;
+            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+            showData(rowIndex);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Trong bảng không có đữ liệu", "Thông báo", 1);
+
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void btnBrowserImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowserImageActionPerformed
@@ -833,6 +878,16 @@ public class View extends javax.swing.JFrame {
         Thread t1 = new Thread(clock);
         t1.start();
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnSortByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortByNameActionPerformed
+        dao.sortByName();
+        fillToTable();
+    }//GEN-LAST:event_btnSortByNameActionPerformed
+
+    private void btnSortBySalaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortBySalaryActionPerformed
+      dao.sortBySalary();
+      fillToTable();
+    }//GEN-LAST:event_btnSortBySalaryActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -877,6 +932,8 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JButton btnOpen;
     private javax.swing.JButton btnPre;
     private javax.swing.JButton btnSave;
+    private javax.swing.JToggleButton btnSortByName;
+    private javax.swing.JToggleButton btnSortBySalary;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;

@@ -24,4 +24,6 @@ public interface Dao<T,I,D,O,S> {
     public void update(I index,D ID, D name, I age, D email,S salary,D image);
     public void openFile() throws FileNotFoundException,IOException,ClassNotFoundException;
     public void saveFile() throws FileNotFoundException,IOException;
+    public void sortByName();
+    public void sortBySalary();
 }
