@@ -54,7 +54,7 @@ public class View extends javax.swing.JFrame {
         ImageIcon iI = new ImageIcon(this.path);
         Image img = iI.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH);
         lblImage.setIcon(new ImageIcon(img));
-        rowIndex = 0;
+        rowIndex = -1;
     }
 
     public void deleteData() {
@@ -224,18 +224,17 @@ public class View extends javax.swing.JFrame {
     }
 
     public void showData(int index) {
-        Locale locale = new Locale("vi", "VN");
-        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
         txtMaNhanVien.setText(String.valueOf(dao.getData().get(index).getMaNhanVien()));
         txtTenNhanVien.setText(String.valueOf(dao.getData().get(index).getTenNhanVien()));
         txtTuoi.setText(String.valueOf(dao.getData().get(index).getTuoi()));
         txtEmail.setText(String.valueOf(dao.getData().get(index).getEmail()));
-        txtLuong.setText(numberFormat.format(dao.getData().get(index).getLuong()));
+        txtLuong.setText(String.valueOf((long)dao.getData().get(index).getLuong()));
         ImageIcon iI = new ImageIcon(dao.getData().get(index).getImage());
         this.path = dao.getData().get(index).getImage();
         Image img = iI.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH);
         lblImage.setIcon(new ImageIcon(img));
         lblCountRecord.setText(String.valueOf(tblEmpolyee.getSelectedRow() + 1));
+        
     }
 
     public void pre() {
@@ -711,17 +710,14 @@ public class View extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblClock, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBrowserImage))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pnForm, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(pnForm, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -806,7 +802,6 @@ public class View extends javax.swing.JFrame {
         clearForm();
         tblEmpolyee.clearSelection();
         System.out.println(tblEmpolyee.getSelectedRow());
-
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -888,11 +883,13 @@ public class View extends javax.swing.JFrame {
     private void btnSortByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortByNameActionPerformed
         dao.sortByName();
         fillToTable();
+        clearForm();
     }//GEN-LAST:event_btnSortByNameActionPerformed
 
     private void btnSortBySalaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortBySalaryActionPerformed
       dao.sortBySalary();
       fillToTable();
+      clearForm();
     }//GEN-LAST:event_btnSortBySalaryActionPerformed
 
     public static void main(String args[]) {

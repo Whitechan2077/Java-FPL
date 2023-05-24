@@ -52,7 +52,7 @@ public class DaoEmployee implements Dao<Employee,Integer,String,Object,Double>{
                 try {
                     throw new ObjectNotFoundException("Khong tim duoc");
                 } catch (ObjectNotFoundException ex) {
-                    Logger.getLogger(DaoEmployee.class.getName()).log(Level.SEVERE, null, ex);
+
                 }
             }
         }
