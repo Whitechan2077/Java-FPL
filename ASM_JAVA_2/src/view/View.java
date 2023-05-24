@@ -788,9 +788,7 @@ public class View extends javax.swing.JFrame {
                 update();
                 clearForm();
                 JOptionPane.showMessageDialog(this, "Cập nhật dữ liệu thành công", "Thông báo", 2);
-
                 tblEmpolyee.clearSelection();
-
             } else {
                 JOptionPane.showMessageDialog(this, "Cập nhật dữ liệu thất bại", "Thông báo", 2);
             }
@@ -801,8 +799,8 @@ public class View extends javax.swing.JFrame {
                 SaveData();
                 setRecord();
                 JOptionPane.showMessageDialog(this, "Thêm đữ liệu thành công ", "Thông báo", 2);
-
-                clearForm();
+                rowIndex = tblEmpolyee.getRowCount()-1;
+                tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
             }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -811,6 +809,7 @@ public class View extends javax.swing.JFrame {
         clearForm();
         tblEmpolyee.clearSelection();
         System.out.println(tblEmpolyee.getSelectedRow());
+        setRecord();
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
