@@ -39,20 +39,23 @@ public class DaoEmployee implements Dao<Employee,Integer,String,Object,Double>{
      *
      * @param ID
      * @return
+     * @throws custom_exception.ObjectNotFoundException
      */
     @Override
-    public Employee find(String ID) {
+    public Employee find(String ID){
         Employee emp = null;
         for (Employee employee : listEmployee) {
             if (employee.getMaNhanVien().equals(ID)) {
                 emp = new Employee(employee.getMaNhanVien(),employee.getTenNhanVien(), employee.getTuoi(),employee.getEmail(),employee.getLuong(),employee.getImage());
+                System.out.println(emp.toString());
                 break;
             }
             else{
+              
                 try {
-                 throw new ObjectNotFoundException("Khong tim duoc");
+                    throw new ObjectNotFoundException("Khong tim duoc");
                 } catch (ObjectNotFoundException ex) {
-                    System.out.println(ex);
+                    
                 }
             }
         }
