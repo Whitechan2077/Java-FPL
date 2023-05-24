@@ -47,7 +47,6 @@ public class DaoEmployee implements Dao<Employee,Integer,String,Object,Double>{
         for (Employee employee : listEmployee) {
             if (employee.getMaNhanVien().equals(ID)) {
                 emp = new Employee(employee.getMaNhanVien(),employee.getTenNhanVien(), employee.getTuoi(),employee.getEmail(),employee.getLuong(),employee.getImage());
-                System.out.println(emp.toString());
                 break;
             }
             else{
@@ -55,7 +54,6 @@ public class DaoEmployee implements Dao<Employee,Integer,String,Object,Double>{
                 try {
                     throw new ObjectNotFoundException("Khong tim duoc");
                 } catch (ObjectNotFoundException ex) {
-                    
                 }
             }
         }
