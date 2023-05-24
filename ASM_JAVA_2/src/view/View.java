@@ -321,10 +321,10 @@ public class View extends javax.swing.JFrame {
         btnOpen = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton8 = new javax.swing.JButton();
+        btnFirstRow = new javax.swing.JButton();
         btnPre = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        btnLastRow = new javax.swing.JButton();
         lblCountRecord = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lblTotalRecord = new javax.swing.JLabel();
@@ -516,10 +516,10 @@ public class View extends javax.swing.JFrame {
             .addGap(0, 268, Short.MAX_VALUE)
         );
 
-        jButton8.setText("|<");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btnFirstRow.setText("|<");
+        btnFirstRow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btnFirstRowActionPerformed(evt);
             }
         });
 
@@ -537,10 +537,10 @@ public class View extends javax.swing.JFrame {
             }
         });
 
-        jButton9.setText(">|");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btnLastRow.setText(">|");
+        btnLastRow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btnLastRowActionPerformed(evt);
             }
         });
 
@@ -562,34 +562,34 @@ public class View extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTotalRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton8)
+                .addComponent(btnFirstRow)
                 .addGap(33, 33, 33)
                 .addComponent(btnPre)
                 .addGap(29, 29, 29)
                 .addComponent(btnNext)
                 .addGap(38, 38, 38)
-                .addComponent(jButton9)
+                .addComponent(btnLastRow)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnNext, btnPre, jButton8, jButton9});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnFirstRow, btnLastRow, btnNext, btnPre});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
+                    .addComponent(btnFirstRow)
                     .addComponent(btnPre)
                     .addComponent(btnNext)
-                    .addComponent(jButton9)
+                    .addComponent(btnLastRow)
                     .addComponent(lblCountRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTotalRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnNext, btnPre, jButton8, jButton9});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnFirstRow, btnLastRow, btnNext, btnPre});
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -756,9 +756,10 @@ public class View extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Mở file thành công", "Thông báo", 2);
             dao.openFile();
             fillToTable();
-            setRecord();
             rowIndex = 0;
+            setRecord();
             showData(rowIndex);
+            lblCountRecord.setText(String.valueOf(rowIndex+1));
             tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Có lỗi trong quá trình load file", "Thông báo", 2);
@@ -768,7 +769,7 @@ public class View extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnOpenActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void btnFirstRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstRowActionPerformed
         try {
             rowIndex = 0;
             tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
@@ -776,7 +777,7 @@ public class View extends javax.swing.JFrame {
         } catch (Exception e) {
            JOptionPane.showMessageDialog(this, "Trong bảng không có đữ liệu", "Thông báo", 1);
         }
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_btnFirstRowActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         next();
@@ -809,7 +810,7 @@ public class View extends javax.swing.JFrame {
         clearForm();
         tblEmpolyee.clearSelection();
         System.out.println(tblEmpolyee.getSelectedRow());
-        setRecord();
+        lblCountRecord.setText("0");
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -859,7 +860,7 @@ public class View extends javax.swing.JFrame {
         pre();
     }//GEN-LAST:event_btnPreActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void btnLastRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastRowActionPerformed
         try {
             rowIndex = tblEmpolyee.getRowCount() - 1;
             tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
@@ -868,7 +869,7 @@ public class View extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Trong bảng không có đữ liệu", "Thông báo", 1);
 
         }
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_btnLastRowActionPerformed
 
     private void btnBrowserImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowserImageActionPerformed
         JFileChooser browserImage = new JFileChooser();
@@ -948,6 +949,8 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnFirstRow;
+    private javax.swing.JButton btnLastRow;
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnOpen;
@@ -955,8 +958,6 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JButton btnSave;
     private javax.swing.JToggleButton btnSortByName;
     private javax.swing.JToggleButton btnSortBySalary;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

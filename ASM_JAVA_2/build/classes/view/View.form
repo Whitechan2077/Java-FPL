@@ -363,13 +363,13 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblTotalRecord" min="-2" pref="22" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton8" linkSize="4" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnFirstRow" linkSize="4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="btnPre" linkSize="4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="btnNext" linkSize="4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="jButton9" linkSize="4" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnLastRow" linkSize="4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -379,10 +379,10 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton8" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnFirstRow" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnPre" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnNext" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton9" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnLastRow" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblCountRecord" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="lblTotalRecord" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
@@ -393,12 +393,12 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton8">
+        <Component class="javax.swing.JButton" name="btnFirstRow">
           <Properties>
             <Property name="text" type="java.lang.String" value="|&lt;"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFirstRowActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnPre">
@@ -417,12 +417,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNextActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton9">
+        <Component class="javax.swing.JButton" name="btnLastRow">
           <Properties>
             <Property name="text" type="java.lang.String" value="&gt;|"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLastRowActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCountRecord">
