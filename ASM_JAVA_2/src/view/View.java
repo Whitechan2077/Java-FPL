@@ -14,6 +14,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import clock_theard.Clock;
 import custom_exception.ObjectNotFoundException;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class View extends javax.swing.JFrame {
 
@@ -27,10 +29,12 @@ public class View extends javax.swing.JFrame {
     }
 
     public void fillToTable() {
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
         DefaultTableModel model = (DefaultTableModel) tblEmpolyee.getModel();
         model.setRowCount(0);
         for (Employee x : dao.getData()) {
-            model.addRow(new Object[]{x.getMaNhanVien(), x.getTenNhanVien(), x.getTuoi(), x.getEmail(), (long)x.getLuong()});
+            model.addRow(new Object[]{x.getMaNhanVien(), x.getTenNhanVien(), x.getTuoi(), x.getEmail(),numberFormat.format(x.getLuong())});
         }
     }
 
@@ -220,20 +224,18 @@ public class View extends javax.swing.JFrame {
     }
 
     public void showData(int index) {
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
         txtMaNhanVien.setText(String.valueOf(dao.getData().get(index).getMaNhanVien()));
         txtTenNhanVien.setText(String.valueOf(dao.getData().get(index).getTenNhanVien()));
         txtTuoi.setText(String.valueOf(dao.getData().get(index).getTuoi()));
         txtEmail.setText(String.valueOf(dao.getData().get(index).getEmail()));
-        txtLuong.setText(String.valueOf(dao.getData().get(index).getLuong()));
+        txtLuong.setText(numberFormat.format(dao.getData().get(index).getLuong()));
         ImageIcon iI = new ImageIcon(dao.getData().get(index).getImage());
         this.path = dao.getData().get(index).getImage();
         Image img = iI.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH);
         lblImage.setIcon(new ImageIcon(img));
         lblCountRecord.setText(String.valueOf(tblEmpolyee.getSelectedRow() + 1));
-    }
-
-    public void validateUpdate() {
-
     }
 
     public void pre() {
