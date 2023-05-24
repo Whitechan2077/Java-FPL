@@ -15,9 +15,10 @@ import javax.swing.table.DefaultTableModel;
 import clock_theard.Clock;
 
 public class View extends javax.swing.JFrame {
+
     DaoEmployee dao = new DaoEmployee();
     String path = "";
-    int rowIndex; 
+    int rowIndex = -1;
 
     public View() {
         initComponents();
@@ -27,13 +28,13 @@ public class View extends javax.swing.JFrame {
     public void fillToTable() {
         DefaultTableModel model = (DefaultTableModel) tblEmpolyee.getModel();
         model.setRowCount(0);
-            for (Employee x : dao.getData()) {
-                model.addRow(new Object[]{x.getMaNhanVien(), x.getTenNhanVien(), x.getTuoi(), x.getEmail(), x.getLuong()});
-            }
+        for (Employee x : dao.getData()) {
+            model.addRow(new Object[]{x.getMaNhanVien(), x.getTenNhanVien(), x.getTuoi(), x.getEmail(), x.getLuong()});
+        }
     }
 
     public void SaveData() {
-        dao.save(new Employee(txtMaNhanVien.getText(), txtTenNhanVien.getText(), Integer.parseInt(txtTuoi.getText()), txtEmail.getText(), Double.parseDouble(txtLuong.getText()),this.path));
+        dao.save(new Employee(txtMaNhanVien.getText(), txtTenNhanVien.getText(), Integer.parseInt(txtTuoi.getText()), txtEmail.getText(), Double.parseDouble(txtLuong.getText()), this.path));
         fillToTable();
     }
 
@@ -48,6 +49,7 @@ public class View extends javax.swing.JFrame {
         ImageIcon iI = new ImageIcon(this.path);
         Image img = iI.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH);
         lblImage.setIcon(new ImageIcon(img));
+        rowIndex = 0;
     }
 
     public void deleteData() {
@@ -79,136 +81,134 @@ public class View extends javax.swing.JFrame {
         boolean checkMail = true, checkName = true, checkID = true, checkSalary = true, checkAge = true, checkValidate = false, checkImage = true;
         if (tblEmpolyee.getSelectedRow() == -1) {
             String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        if (txtMaNhanVien.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Không để trống mã", "Thông báo", 1);
-            checkID = false;
-        } else {
-            for (Employee x : dao.getData()) {
-                if (x.getMaNhanVien().equals(txtMaNhanVien.getText())) {
-                    checkID = false;
-                    JOptionPane.showMessageDialog(this, "Không để trùng mã", "Thông báo", 1);
-                    break;
+            if (txtMaNhanVien.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(this, "Không để trống mã", "Thông báo", 1);
+                checkID = false;
+            } else {
+                for (Employee x : dao.getData()) {
+                    if (x.getMaNhanVien().equals(txtMaNhanVien.getText())) {
+                        checkID = false;
+                        JOptionPane.showMessageDialog(this, "Không để trùng mã", "Thông báo", 1);
+                        break;
+                    }
                 }
             }
-        }
-        if (txtTenNhanVien.getText().trim().equals("")) {
-            checkName = false;
-            JOptionPane.showMessageDialog(this, "Không để trống tên", "Thông báo", 1);
-        }
-        if (txtTuoi.getText().trim().equals("")) {
-            checkAge = false;
-            JOptionPane.showMessageDialog(this, "Không để trống tuổi", "Thông báo", 1);
-        } else {
-            try {
-                if (Integer.parseInt(txtTuoi.getText()) < 16 || Integer.parseInt(txtTuoi.getText()) > 55) {
-                    checkAge = false;
-                    JOptionPane.showMessageDialog(this, "Tuổi phải từ 16-55", "Thông báo", 1);
-                }
-            } catch (NumberFormatException e) {
+            if (txtTenNhanVien.getText().trim().equals("")) {
+                checkName = false;
+                JOptionPane.showMessageDialog(this, "Không để trống tên", "Thông báo", 1);
+            }
+            if (txtTuoi.getText().trim().equals("")) {
                 checkAge = false;
-                JOptionPane.showMessageDialog(this, "Vui Lòng nhập đúng định dạng số", "Thông báo", 1);
-            }
-        }
-        if (txtEmail.getText().trim().equals("")) {
-            checkMail = false;
-            JOptionPane.showMessageDialog(this, "Không để trống Email", "Thông báo", 1);
-        } else {
-            if (txtEmail.getText().matches(emailRegex) == false) {
-                checkMail = false;
-                JOptionPane.showMessageDialog(this, "Email không dúng định dạng", "Thông báo", 1);
-            }
-        }
-        if (txtLuong.getText().trim().equals("")) {
-            checkSalary = false;
-            JOptionPane.showMessageDialog(this, "Không để trống Lương", "Thông báo", 1);
-        } else {
-            try {
-                if (Double.parseDouble(txtLuong.getText()) < 5000000) {
-                    checkSalary = false;
-                    JOptionPane.showMessageDialog(this, "Lương phải lớn hơn 5000000 VND", "Thông báo", 1);
+                JOptionPane.showMessageDialog(this, "Không để trống tuổi", "Thông báo", 1);
+            } else {
+                try {
+                    if (Integer.parseInt(txtTuoi.getText()) < 16 || Integer.parseInt(txtTuoi.getText()) > 55) {
+                        checkAge = false;
+                        JOptionPane.showMessageDialog(this, "Tuổi phải từ 16-55", "Thông báo", 1);
+                    }
+                } catch (NumberFormatException e) {
+                    checkAge = false;
+                    JOptionPane.showMessageDialog(this, "Vui Lòng nhập đúng định dạng số", "Thông báo", 1);
                 }
-
-            } catch (NumberFormatException e) {
-                checkSalary = false;
-                JOptionPane.showMessageDialog(this, "Vui Lòng nhập đúng định dạng số", "Thông báo", 1);
-
             }
-        }
-        if (path.equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn ảnh của nhân viên", "Thông báo", 2);
-            checkImage = false;
-        }
-        }
-        else{
+            if (txtEmail.getText().trim().equals("")) {
+                checkMail = false;
+                JOptionPane.showMessageDialog(this, "Không để trống Email", "Thông báo", 1);
+            } else {
+                if (txtEmail.getText().matches(emailRegex) == false) {
+                    checkMail = false;
+                    JOptionPane.showMessageDialog(this, "Email không dúng định dạng", "Thông báo", 1);
+                }
+            }
+            if (txtLuong.getText().trim().equals("")) {
+                checkSalary = false;
+                JOptionPane.showMessageDialog(this, "Không để trống Lương", "Thông báo", 1);
+            } else {
+                try {
+                    if (Double.parseDouble(txtLuong.getText()) < 5000000) {
+                        checkSalary = false;
+                        JOptionPane.showMessageDialog(this, "Lương phải lớn hơn 5000000 VND", "Thông báo", 1);
+                    }
+
+                } catch (NumberFormatException e) {
+                    checkSalary = false;
+                    JOptionPane.showMessageDialog(this, "Vui Lòng nhập đúng định dạng số", "Thông báo", 1);
+
+                }
+            }
+            if (path.equals("")) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn ảnh của nhân viên", "Thông báo", 2);
+                checkImage = false;
+            }
+        } else {
             String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        if (txtMaNhanVien.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Không để trống mã", "Thông báo", 1);
-            checkID = false;
-        } else {
-          if (dao.getData().get(tblEmpolyee.getSelectedRow()).getMaNhanVien().equals(txtMaNhanVien.getText()) ) {
-            checkID = true;        
-            }
-          else{
-            for (Employee x : dao.getData()) {
-                if(x.getMaNhanVien().equals(txtMaNhanVien.getText())){
-                    checkID = false;
-                    JOptionPane.showMessageDialog(this, "Không để trùng mã", "Thông báo", 1);
+            if (txtMaNhanVien.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(this, "Không để trống mã", "Thông báo", 1);
+                checkID = false;
+            } else {
+                if (dao.getData().get(tblEmpolyee.getSelectedRow()).getMaNhanVien().equals(txtMaNhanVien.getText())) {
+                    checkID = true;
+                } else {
+                    for (Employee x : dao.getData()) {
+                        if (x.getMaNhanVien().equals(txtMaNhanVien.getText())) {
+                            checkID = false;
+                            JOptionPane.showMessageDialog(this, "Không để trùng mã", "Thông báo", 1);
+                        }
+                    }
                 }
             }
-          }
-        }
-        if (txtTenNhanVien.getText().trim().equals("")) {
-            checkName = false;
-            JOptionPane.showMessageDialog(this, "Không để trống tên", "Thông báo", 1);
-        }
-        if (txtTuoi.getText().trim().equals("")) {
-            checkAge = false;
-            JOptionPane.showMessageDialog(this, "Không để trống tuổi", "Thông báo", 1);
-        } else {
-            try {
-                if (Integer.parseInt(txtTuoi.getText()) < 16 || Integer.parseInt(txtTuoi.getText()) > 55) {
-                    checkAge = false;
-                    JOptionPane.showMessageDialog(this, "Tuổi phải từ 16-55", "Thông báo", 1);
-                }
-            } catch (NumberFormatException e) {
+            if (txtTenNhanVien.getText().trim().equals("")) {
+                checkName = false;
+                JOptionPane.showMessageDialog(this, "Không để trống tên", "Thông báo", 1);
+            }
+            if (txtTuoi.getText().trim().equals("")) {
                 checkAge = false;
-                JOptionPane.showMessageDialog(this, "Vui Lòng nhập đúng định dạng số", "Thông báo", 1);
-            }
-        }
-        if (txtEmail.getText().trim().equals("")) {
-            checkMail = false;
-            JOptionPane.showMessageDialog(this, "Không để trống Email", "Thông báo", 1);
-        } else {
-            if (txtEmail.getText().matches(emailRegex) == false) {
-                checkMail = false;
-                JOptionPane.showMessageDialog(this, "Email không dúng định dạng", "Thông báo", 1);
-            }
-        }
-        if (txtLuong.getText().trim().equals("")) {
-            checkSalary = false;
-            JOptionPane.showMessageDialog(this, "Không để trống Lương", "Thông báo", 1);
-        } else {
-            try {
-                if (Double.parseDouble(txtLuong.getText()) < 5000000) {
-                    checkSalary = false;
-                    JOptionPane.showMessageDialog(this, "Lương phải lớn hơn 5000000 VND", "Thông báo", 1);
+                JOptionPane.showMessageDialog(this, "Không để trống tuổi", "Thông báo", 1);
+            } else {
+                try {
+                    if (Integer.parseInt(txtTuoi.getText()) < 16 || Integer.parseInt(txtTuoi.getText()) > 55) {
+                        checkAge = false;
+                        JOptionPane.showMessageDialog(this, "Tuổi phải từ 16-55", "Thông báo", 1);
+                    }
+                } catch (NumberFormatException e) {
+                    checkAge = false;
+                    JOptionPane.showMessageDialog(this, "Vui Lòng nhập đúng định dạng số", "Thông báo", 1);
                 }
-
-            } catch (NumberFormatException e) {
-                checkSalary = false;
-                JOptionPane.showMessageDialog(this, "Vui Lòng nhập đúng định dạng số", "Thông báo", 1);
-
             }
+            if (txtEmail.getText().trim().equals("")) {
+                checkMail = false;
+                JOptionPane.showMessageDialog(this, "Không để trống Email", "Thông báo", 1);
+            } else {
+                if (txtEmail.getText().matches(emailRegex) == false) {
+                    checkMail = false;
+                    JOptionPane.showMessageDialog(this, "Email không dúng định dạng", "Thông báo", 1);
+                }
+            }
+            if (txtLuong.getText().trim().equals("")) {
+                checkSalary = false;
+                JOptionPane.showMessageDialog(this, "Không để trống Lương", "Thông báo", 1);
+            } else {
+                try {
+                    if (Double.parseDouble(txtLuong.getText()) < 5000000) {
+                        checkSalary = false;
+                        JOptionPane.showMessageDialog(this, "Lương phải lớn hơn 5000000 VND", "Thông báo", 1);
+                    }
+
+                } catch (NumberFormatException e) {
+                    checkSalary = false;
+                    JOptionPane.showMessageDialog(this, "Vui Lòng nhập đúng định dạng số", "Thông báo", 1);
+
+                }
+            }
+            if (path.equals("")) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn ảnh của nhân viên", "Thông báo", 2);
+                checkImage = false;
+            }
+
         }
-        if (path.equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn ảnh của nhân viên", "Thông báo", 2);
-            checkImage = false;
-        }
-            
-        }
-        if (checkAge == true &&  checkMail == true && checkName == true && checkID == true && checkSalary == true&& checkImage == true) {
+        if (checkAge == true && checkMail == true && checkName == true && checkID == true && checkSalary == true && checkImage == true) {
             checkValidate = true;
-            
+
         }
         return checkValidate;
     }
@@ -233,6 +233,58 @@ public class View extends javax.swing.JFrame {
 
     public void validateUpdate() {
 
+    }
+
+    public void pre() {
+         if (tblEmpolyee.getSelectedRow()>-1) {
+            try {
+            rowIndex =tblEmpolyee.getSelectedRow();
+            rowIndex--;
+            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+            showData(rowIndex);
+        } catch (Exception e) {
+             rowIndex=tblEmpolyee.getRowCount()-1;
+            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+             showData(rowIndex);
+        }
+        }
+        else{
+            try {
+            rowIndex--;
+            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+             showData(rowIndex);
+        } catch (Exception e) {
+            rowIndex=tblEmpolyee.getRowCount()-1;
+            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+             showData(rowIndex);
+        }
+        }
+    }
+
+    public void next() {
+        if (tblEmpolyee.getSelectedRow()>-1) {
+            try {
+            rowIndex =tblEmpolyee.getSelectedRow();
+            rowIndex++;
+            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+            showData(rowIndex);
+        } catch (Exception e) {
+             rowIndex=0;
+            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+             showData(rowIndex);
+        }
+        }
+        else{
+            try {
+            rowIndex++;
+            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+             showData(rowIndex);
+        } catch (Exception e) {
+            rowIndex=0;
+            tblEmpolyee.setRowSelectionInterval(rowIndex, rowIndex);
+             showData(rowIndex);
+        }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -670,26 +722,25 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOpenActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        tblEmpolyee.setRowSelectionInterval(0, 0);
-        showData(0);
+        rowIndex = 0;
+        tblEmpolyee.setRowSelectionInterval(rowIndex,rowIndex);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-
+        next();
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         if (tblEmpolyee.getSelectedRow() > -1) {
             if (validateForm() == true) {
-                  update();
-                  clearForm();
-                  JOptionPane.showMessageDialog(this, "Cập nhật dữ liệu thành công", "Thông báo", 2);
+                update();
+                clearForm();
+                JOptionPane.showMessageDialog(this, "Cập nhật dữ liệu thành công", "Thông báo", 2);
 
-                  tblEmpolyee.clearSelection();
+                tblEmpolyee.clearSelection();
 
-            }
-            else{
-               JOptionPane.showMessageDialog(this, "Cập nhật dữ liệu thất bại", "Thông báo", 2);
+            } else {
+                JOptionPane.showMessageDialog(this, "Cập nhật dữ liệu thất bại", "Thông báo", 2);
             }
         } else {
             if (validateForm() == false) {
@@ -697,7 +748,7 @@ public class View extends javax.swing.JFrame {
             } else {
                 SaveData();
                 setRecord();
-              JOptionPane.showMessageDialog(this, "Thêm đữ liệu thành công ", "Thông báo", 2);
+                JOptionPane.showMessageDialog(this, "Thêm đữ liệu thành công ", "Thông báo", 2);
 
                 clearForm();
             }
@@ -749,12 +800,13 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_tblEmpolyeeMouseClicked
 
     private void btnPreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreActionPerformed
-
+        pre();
     }//GEN-LAST:event_btnPreActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        tblEmpolyee.setRowSelectionInterval(tblEmpolyee.getRowCount() - 1, tblEmpolyee.getRowCount() - 1);
-        showData(tblEmpolyee.getRowCount() - 1);
+        rowIndex = tblEmpolyee.getRowCount()-1;
+        tblEmpolyee.setRowSelectionInterval(rowIndex,rowIndex);
+        showData(rowIndex);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void btnBrowserImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowserImageActionPerformed
