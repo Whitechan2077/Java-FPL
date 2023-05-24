@@ -830,6 +830,12 @@ public class View extends javax.swing.JFrame {
                     ImageIcon iI = new ImageIcon(dao.find(maNV).getImage());
                     Image img = iI.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH);
                     lblImage.setIcon(new ImageIcon(img));
+                    for(int i = 0;i<tblEmpolyee.getRowCount();i++){
+                        if (tblEmpolyee.getValueAt(i,0).equals(dao.find(maNV).getMaNhanVien())) {
+                            tblEmpolyee.setRowSelectionInterval(i,i);            
+                            break;
+                        }
+                    }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, "Không tìm thấy dữ liệu", "Thông báo", 1);
 

@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dao;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -18,14 +17,13 @@ import model.Employee;
 import custom_exception.ObjectNotFoundException;
 import java.util.Collections;
 import java.util.Comparator;
-
 /**
  *
  * @author buidu
  */
-public class DaoEmployee implements Dao<Employee, Integer, String, Object, Double> {
+public class DaoEmployee implements Dao<Employee,Integer,String,Object,Double>{
 
-    List<Employee> listEmployee = new ArrayList<>();
+ List<Employee> listEmployee = new ArrayList<>();
 
     @Override
     public void save(Employee o) {
@@ -35,7 +33,7 @@ public class DaoEmployee implements Dao<Employee, Integer, String, Object, Doubl
     @Override
     public void delete(Integer index) {
         listEmployee.remove(index.intValue());
-    }
+    }    
 
     /**
      *
@@ -45,20 +43,19 @@ public class DaoEmployee implements Dao<Employee, Integer, String, Object, Doubl
     @Override
     public Employee find(String ID) {
         Employee emp = null;
-        try {
-            for (Employee employee : listEmployee) {
-                if (employee.getMaNhanVien().equals(ID)) {
-                    emp = new Employee(employee.getMaNhanVien(), employee.getTenNhanVien(), employee.getTuoi(), employee.getEmail(), employee.getLuong(), employee.getImage());
-                    break;
-                }
-                else{
-                throw new ObjectNotFoundException("Khong tim duoc");
+        for (Employee employee : listEmployee) {
+            if (employee.getMaNhanVien().equals(ID)) {
+                emp = new Employee(employee.getMaNhanVien(),employee.getTenNhanVien(), employee.getTuoi(),employee.getEmail(),employee.getLuong(),employee.getImage());
+                break;
+            }
+            else{
+                try {
+                 throw new ObjectNotFoundException("Khong tim duoc");
+                } catch (ObjectNotFoundException ex) {
+                    System.out.println(ex);
                 }
             }
-        } catch (ObjectNotFoundException ex) {
-            System.out.println(ex);
         }
-
         return emp;
     }
 
@@ -68,7 +65,7 @@ public class DaoEmployee implements Dao<Employee, Integer, String, Object, Doubl
     }
 
     @Override
-    public void update(Integer index, String ID, String name, Integer age, String email, Double salary, String image) {
+    public void update(Integer index, String ID, String name, Integer age, String email, Double salary,String image) {
         listEmployee.get(index).setMaNhanVien(ID);
         listEmployee.get(index).setTenNhanVien(name);
         listEmployee.get(index).setTuoi(age);
@@ -90,7 +87,7 @@ public class DaoEmployee implements Dao<Employee, Integer, String, Object, Doubl
     public void openFile() throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream fos = new FileInputStream("data.dat");
         ObjectInputStream ois = new ObjectInputStream(fos);
-        listEmployee = (List<Employee>) ois.readObject();
+        listEmployee = (List<Employee>)ois.readObject();
         fos.close();
         ois.close();
     }
@@ -105,16 +102,15 @@ public class DaoEmployee implements Dao<Employee, Integer, String, Object, Doubl
         Comparator<Employee> comp = new Comparator<Employee>() {
             @Override
             public int compare(Employee o1, Employee o2) {
-                if (o1.getLuong() > o2.getLuong()) {
+                if (o1.getLuong()>o2.getLuong()) {
                     return 1;
                 }
-                if (o1.getLuong() < o2.getLuong()) {
+                if (o1.getLuong()<o2.getLuong()) {
                     return -1;
-                } else {
-                    return 0;
                 }
+                else return 0 ;
             }
         };
-        Collections.sort(listEmployee, comp);
+        Collections.sort(listEmployee,comp);
     }
 }
