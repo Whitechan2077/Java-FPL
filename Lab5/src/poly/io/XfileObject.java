@@ -28,6 +28,7 @@ public class XfileObject {
     public static void write(String path, Object obj) throws FileNotFoundException, IOException {
         FileOutputStream fos = new FileOutputStream(path);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
-        
+        oos.writeObject(obj);
+        oos.close();
     }
 }
