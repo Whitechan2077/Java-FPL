@@ -26,6 +26,7 @@ public class XFILE {
         FileOutputStream fos = new FileOutputStream(path);
         fos.write(data);
         fos.close();
+        
     }
 }
 
