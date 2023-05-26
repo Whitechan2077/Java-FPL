@@ -67,4 +67,10 @@ public class Student implements Serializable{
     public boolean isBonus() {
         return this.marks >= 7.5;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" + "name=" + name + ", marks=" + marks + ", major=" + major + '}';
+    }
+    
 }
