@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author buidu
  */
 public class Product implements DAO{
-        private String name;
+    private String name;
     private double price;
 
     public Product(String name, double price) {
