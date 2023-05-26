@@ -17,23 +17,19 @@ import java.util.Arrays;
  * @author buidu
  */
 public class XFILE {
-
-    public static byte[] read(String path) throws FileNotFoundException, IOException {
+    public static byte[] read(String path) throws FileNotFoundException, IOException{
         FileInputStream fis = new FileInputStream(path);
-        int n = fis.available(); //trả về số  byte của file được input
-        byte[] data = new byte[n];//tạo một mảng byte chứa
-        fis.read(data);//đọc dữ liệu
-        fis.close();//đòng luồng file
-        return data;//trả về file kiểu byte
+        int n = fis.available();
+        byte[] data = new byte[n];
+        fis.read(data); // đọc data từ fis để nhập byte vào data
+        fis.close();
+        return data;
     }
-    public static void write(String path,byte[] data) throws IOException {
-        FileOutputStream fos = new FileOutputStream(path);//Cho file ra
-        fos.write(data);//vứt file
-        fos.close();//đóng luồn
-    }
-
-    public static void write(String lmaodat, String a) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    public static void write(String path,byte[]data) throws FileNotFoundException, IOException{
+        FileOutputStream fos = new FileOutputStream(path);
+        fos.write(data);
+        fos.close();
     }
 }
 
