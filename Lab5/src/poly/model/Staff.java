@@ -4,11 +4,13 @@
  */
 package poly.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author buidu
  */
-public class Staff {
+public class Staff implements Serializable{
     public String fullname;
     public double salary;
 
