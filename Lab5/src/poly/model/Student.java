@@ -4,11 +4,13 @@
  */
 package poly.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author buidu
  */
-public class Student {
+public class Student implements Serializable{
 
     public String name;
     public double marks;
@@ -19,7 +21,6 @@ public class Student {
         this.marks = marks;
         this.major = major;
     }
-
     public String getName() {
         return name;
     }

@@ -17,7 +17,7 @@ import java.io.ObjectOutputStream;
  */
 public class XfileObject {
 
-    public static Object read(Object obj, String path) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public static Object read(String path) throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(path);
         ObjectInputStream ois = new ObjectInputStream(fis);
         Object object = ois.readObject();
