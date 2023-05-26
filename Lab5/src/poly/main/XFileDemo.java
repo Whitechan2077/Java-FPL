@@ -11,7 +11,7 @@ import poly.io.XFILE;
  */
 public class XFileDemo {
     public static void main(String[] args) throws IOException {
-        byte[] data = XFILE.read("D:/Firmware 15.0.0.zip");
-        XFILE.write("F:/Firmware 16.0.0.zip", data);
+        byte[] data = XFILE.read("F:/y2mate.com - 可愛くてごめん feat ちゅーたんCV早見沙織HoneyWorks_1080p.mp4");
+        XFILE.write("F:/kwaii.mp4", data);
     }
 }

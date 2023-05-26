@@ -9,6 +9,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**
  *
@@ -18,17 +20,16 @@ public class XFILE {
 
     public static byte[] read(String path) throws FileNotFoundException, IOException {
         FileInputStream fis = new FileInputStream(path);
-        int n = fis.available();
-        byte[] data = new byte[n];
-        System.out.println(n);
-        fis.read(data);
-        fis.close();
-        return data;
+        int n = fis.available(); //trả về số  byte của file được input
+        byte[] data = new byte[n];//tạo một mảng byte chứa
+        fis.read(data);//đọc dữ liệu
+        fis.close();//đòng luồng file
+        return data;//trả về file kiểu byte
     }
     public static void write(String path,byte[] data) throws IOException {
-        FileOutputStream fos = new FileOutputStream(path);
-        fos.write(data);
-        fos.close();
+        FileOutputStream fos = new FileOutputStream(path);//Cho file ra
+        fos.write(data);//vứt file
+        fos.close();//đóng luồn
     }
 
     public static void write(String lmaodat, String a) {
