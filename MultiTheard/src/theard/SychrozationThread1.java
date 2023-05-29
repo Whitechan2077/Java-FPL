@@ -4,6 +4,9 @@
  */
 package theard;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author buidu
@@ -11,8 +14,17 @@ package theard;
 public class SychrozationThread1 implements Runnable{
 
     @Override
-    public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public synchronized void run() {
+       int i = 0;
+        while (i<=10) {            
+             System.out.println("Tao cũng yêu cả Ganyu nữa");
+             i++;
+           try {
+               Thread.sleep(1000);
+           } catch (InterruptedException ex) {
+               Logger.getLogger(SychrozationThread1.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        }
     }
     
 }

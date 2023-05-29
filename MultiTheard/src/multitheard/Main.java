@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package multitheard;
+import theard.SychrozationThread1;
+import theard.SynchrozationThread2;
 import theard.Thread1;
 import theard.Thread2;
 /**
@@ -60,7 +62,17 @@ public class Main {
         Đưa được thread vào trong monitor thì cần có Synchrozation
         Một monitor khi có một thread vào thì sau khi thread chạy xong thì sẽ tiếp tục nhét thread mới
         => Synchrozation là quá trinh làm cho các thread chạy lần lượt
+        đồng bộ hóa sẽ có một số các method chỉ được dùng trong method có sychrozation
+        wait() ngủ notify() notifyAll(); đánh thức
+        khi đánh thức tất thì thread nào có priority lớn sẽ được ưu tiên chạy trước
+        */
+        Thread th4 = new Thread(new SychrozationThread1());
+        Thread th5 = new Thread(new Thread(new SynchrozationThread2()));
+        th4.start();
+        th5.start();
         
+        /*
+        Dead lock hiên tượng chết dí xuất hiện khi hai thread cùng đợi nhau
         */
     }
 }
