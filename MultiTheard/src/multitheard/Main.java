@@ -51,7 +51,7 @@ public class Main {
         
         /*
         Đồng Bộ Hóa Thread 
-        Nhiều thread chạy // => xung đột
+        Nhiều thread chạy // => xung đột tranh chấp tài nguyên
         Sychronization => giải quyết vấn đề
         Sychrozation => xắp xếp thread để không xung đột dữ liệu
         
