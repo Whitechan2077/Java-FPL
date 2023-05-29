@@ -70,9 +70,9 @@ public class Main {
         Thread th5 = new Thread(new Thread(new SynchrozationThread2()));
         th4.start();
         th5.start();
-        
         /*
         Dead lock hiên tượng chết dí xuất hiện khi hai thread cùng đợi nhau nên k chạy được => infinity
+        
         Trong java có 2 luông
         1.Luồng main
         2.Luồng user
