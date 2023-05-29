@@ -10,19 +10,53 @@ import theard.Thread2;
  * 
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         //1.Có hai cách tạo thread  1 là implement Runable 2 là extends Thread 
         Thread th1 = new Thread(new Thread1());
         Thread th2 = new Thread(new Thread2());
-        th1.start();
-        th2.start();
         //Nhiều thread có thể có nhiều runnalbe
         //2.thread nặc danh một thred mà không phải tạo một class  
-        new Thread(new Runnable() {
+        Thread th3 = new Thread(new Runnable() {
             @Override
             public void run() {
                 System.out.println("Bố mày là thread nặc danh");
             }
-        }).start();
+        });
+        th3.start();
+        th3.join();
+        th1.start();
+        th2.start();
+        /*
+        các trang thái của thread 
+        1. new tạo thread nhưng chưa có runnable
+        2. ready tạo thread có runnable chờ được start();
+        3. running thread đan chạy
+        4. wait trạng thái chờ
+        5.blocked bị chặn
+        6.dead thread chết đừng hoạt động
+        */
+        
+        
+        
+        /*
+        Dộ ưu tiên (Prioriry)
+        NORN_PRIORIRY (default)
+        MIN_PRIORITY (MIN)
+        MAX_PRIORITY (MAX)
+        Khi tranh chấp thì sẽ ưu tiên PRIORITY cao
+        join() đợi thread hoạt động xong thì sẽ khởi chạy thread tiếp theo
+        */
+        
+        
+        
+        /*
+        Đồng Bộ Hóa Thread 
+        Nhiều thread chạy // => xung đột
+        Sychronization => giải quyết vấn đề
+        Sychrozation => xắp xếp thread để không xung đột dữ liệu
+        
+        Monitor công cụ giám sát thread
+        
+        */
     }
 }

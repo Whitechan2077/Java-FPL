@@ -7,20 +7,21 @@ package theard;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
- *  Đây sẽ là cmt đầu tiên của tôi về lý thuyết
- * 1.Có hai cách tạo thread  1 là implement Runable 2 là extends Thread
+ * 
  * 
  */
-public class Thread2 implements Runnable{
+public class Thread2 extends Thread{
 
     @Override
     public void run() {
-        for (int i = 0;true; i++) {
-            System.out.println(i);
+        while (true) {            
+            System.out.println("Lmao");
             try {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Thread2.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
