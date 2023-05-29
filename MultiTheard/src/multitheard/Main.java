@@ -10,6 +10,7 @@ import theard.Thread2;
  * Đây sẽ là cmt đầu tiên của tôi về lý thuyết
  * 1.Có hai cách tạo thread  1 là implement Runable 2 là extends Thread
  * 2 thread nặc danh là thực hiện một thread mà không cần phải tạo class mới
+ * 3.
  */
 public class Main {
     public static void main(String[] args) {
