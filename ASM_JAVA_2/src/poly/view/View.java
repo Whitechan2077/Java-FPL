@@ -263,7 +263,6 @@ public class View extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Trong bảng không có đữ liệu", "Thông báo", 1);
-
         }
     }
 

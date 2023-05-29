@@ -9,5 +9,7 @@ package poly.xtextreader;
  * @author buidu
  */
 public class XTextReader {
-    
+     public static void readFile(String path){
+         
+     }
 }
