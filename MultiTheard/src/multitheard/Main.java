@@ -11,13 +11,13 @@ import theard.Thread2;
  */
 public class Main {
     public static void main(String[] args) {
-        //1.Có hai cách tạo thread  1 là implement Runable 2 là extends Thread
+        //1.Có hai cách tạo thread  1 là implement Runable 2 là extends Thread 
         Thread th1 = new Thread(new Thread1());
         Thread th2 = new Thread(new Thread2());
         th1.start();
         th2.start();
-        
-        //2.thread nặc danh một thred mà không phải tạo một class mới 
+        //Nhiều thread có thể có nhiều runnalbe
+        //2.thread nặc danh một thred mà không phải tạo một class  
         new Thread(new Runnable() {
             @Override
             public void run() {
