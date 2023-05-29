@@ -8,8 +8,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author buidu
+ *  Đây sẽ là cmt đầu tiên của tôi về lý thuyết
+ * 1.Có hai cách tạo thread  1 là implement Runable 2 là extends Thread
+ * 
  */
 public class Thread2 implements Runnable{
 
