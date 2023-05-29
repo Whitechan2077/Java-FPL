@@ -15,12 +15,11 @@ public class Thread2 implements Runnable{
 
     @Override
     public void run() {
-        while (true) {            
-            System.out.println("Them bu lon");
+        for (int i = 0;true; i++) {
+            System.out.println(i);
             try {
                 Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Thread2.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException e) {
             }
         }
     }
