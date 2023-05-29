@@ -56,6 +56,10 @@ public class Main {
         Sychrozation => xắp xếp thread để không xung đột dữ liệu
         
         Monitor công cụ giám sát thread
+        Trong một thời điểm thì chỉ cố một thread vào được monitor
+        Đưa được thread vào trong monitor thì cần có Synchrozation
+        Một monitor khi có một thread vào thì sau khi thread chạy xong thì sẽ tiếp tục nhét thread mới
+        => Synchrozation là quá trinh làm cho các thread chạy lần lượt
         
         */
     }
