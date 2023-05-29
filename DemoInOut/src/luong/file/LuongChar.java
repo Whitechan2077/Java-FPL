@@ -28,6 +28,7 @@ public class LuongChar {
                 c = fileReader.read();
             }
         } catch (Exception e) {
+            
         }
     }
 }
