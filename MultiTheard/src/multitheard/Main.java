@@ -21,7 +21,7 @@ public class Main {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("Tao dang la thread nặc danh ");
+                System.out.println("Bố mày là thread nặc danh");
             }
         }).start();
     }
