@@ -24,6 +24,10 @@ public class Main {
                 System.out.println("Bố mày là thread nặc danh");
             }
         });
+        //lamda
+//                Thread th3 = new Thread(() -> {
+//            System.out.println("Bố mày là thread nặc danh");
+//        });
         th3.start();
         th3.join();
         th1.start();
