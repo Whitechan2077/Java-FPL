@@ -22,6 +22,11 @@ public class LuongChar {
             fileOut.write("lol qua");
             fileOut.close();
             FileReader fileReader = new FileReader(fileName);
+            int c = fileReader.read();
+            while(c!=-1){
+                System.out.println((char) c);
+                c = fileReader.read();
+            }
         } catch (Exception e) {
         }
     }
