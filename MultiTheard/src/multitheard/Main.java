@@ -72,7 +72,14 @@ public class Main {
         th5.start();
         
         /*
-        Dead lock hiên tượng chết dí xuất hiện khi hai thread cùng đợi nhau
+        Dead lock hiên tượng chết dí xuất hiện khi hai thread cùng đợi nhau nên k chạy được => infinity
+        Trong java có 2 luông
+        1.Luồng main
+        2.Luồng user
+        Deadmon thread là thread chạy ở background cửa JVM ngăn chặn thoát app đột ngột sau khi chạy các thread
+        khi còn đùng deamon thread thì app sẽ tự kết thức
+        
+        Garbage Collection là một trong các deamon thread
         */
     }
 }
