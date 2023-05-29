@@ -23,7 +23,7 @@ public class BufferWriter {
         readToText();
     }
     public static void writeToText () throws IOException{
-       List<Student> listStudents = new ArrayList<>();
+       List<Student>  listStudents = new ArrayList<>();
        listStudents.add(new Student("A", 1));
        listStudents.add(new Student("B", 1));
        listStudents.add(new Student("C", 1));
@@ -41,7 +41,7 @@ public class BufferWriter {
         int c = br.read();
         while(c!= -1){
             System.out.print((char)c);
-            c = br.read();
+            c = br.read();        
         }
     }
 }
