@@ -52,12 +52,12 @@ public class Main {
         
         
         /*
-        Đồng Bộ Hóa Thread 
+        --Đồng Bộ Hóa Thread 
         Nhiều thread chạy // => xung đột tranh chấp tài nguyên
         Sychronization => giải quyết vấn đề
         Sychrozation => xắp xếp thread để không xung đột dữ liệu
         
-        Monitor công cụ giám sát thread
+        ==Monitor công cụ giám sát thread
         Trong một thời điểm thì chỉ cố một thread vào được monitor
         Đưa được thread vào trong monitor thì cần có Synchrozation
         Một monitor khi có một thread vào thì sau khi thread chạy xong thì sẽ tiếp tục nhét thread mới
@@ -79,7 +79,9 @@ public class Main {
         Deadmon thread là thread chạy ở background cửa JVM ngăn chặn thoát app đột ngột sau khi chạy các thread
         khi còn đùng deamon thread thì app sẽ tự kết thức
         
-        Garbage Collection là một trong các deamon thread
+        Garbage Collection là một trong các deamon thread thu dọn các thread k cần thiết
+        là thread có độ ưu tiên thấp nhất chạy riêng biệt
+        Phương thức finalize là dọn dẹp tài nguyên k dùng được nữa trước khi hủy bỏ obj
         */
     }
 }
