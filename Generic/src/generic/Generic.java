@@ -14,6 +14,8 @@ public class Generic {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        var a ="a";
+        
        /*
         Generics chỉ cần hiểu đơn giản là tạo một class interface linh động kiểu dữ liệu
         quy ước đặt tên generics 
