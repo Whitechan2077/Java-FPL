@@ -4,6 +4,13 @@
  */
 package linkedlist;
 
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.function.Consumer;
@@ -13,12 +20,26 @@ import java.util.function.Consumer;
  * @author buidu
  */
 public class LinkedList_DS {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+    public static Object read(String path) throws FileNotFoundException, FileNotFoundException, IOException, ClassNotFoundException{
+        FileInputStream fis = new FileInputStream(path);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        Object o = ois.readObject();
+        ois.close();
+        fis.close();
+        return o;
+    }
+    
+    public static void write(Object o,String path) throws FileNotFoundException, IOException{
+        FileOutputStream fos = new FileOutputStream(path);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(o);
+        fos.flush();
+        oos.close();
+    }
+    
+    public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException {
         LinkedList <String> ls = new LinkedList<>();
+        LinkedList <String> ls2  = new LinkedList<>();
         //Được implements từ list deque Serializable cloneable
         /*
         1.Thêm và xóa phần tử: LinkedList cho phép thêm và xóa phần tử một cách hiệu quả. 
@@ -102,9 +123,12 @@ public class LinkedList_DS {
         ls.forEach((String t) -> {
             System.out.println(t);
         });
-        ls.clear();
-        ls.forEach((t) -> {
-            System.out.println(t);
-        });
+        
+        write(ls,"data.dat");
+        ls2 = (LinkedList<String>)read("data.dat");
+        for (String string : ls2) {
+            System.out.println(string);
+        }
+        
     }
 }
