@@ -25,13 +25,21 @@ public class Main {
             }
         });
         //lamda
-//                Thread th3 = new Thread(() -> {
+//            Thread th3 = new Thread(() -> {
 //            System.out.println("Bố mày là thread nặc danh");
 //        });
-        th3.start();
-        th3.join();
-        th1.start();
         th2.start();
+        th2.join();
+        th3.start();
+        Thread th4 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Dang tìm gái gọi");
+            }
+        });
+        th4.start();
+        th4.join();
+        th1.start();
         /*
         Lý thuyết tổng hợp bởi Hoang Dung PH 35753
         các trang thái của thread 
@@ -71,10 +79,6 @@ public class Main {
         wait() ngủ notify() notifyAll(); đánh thức
         khi đánh thức tất thì thread nào có priority lớn sẽ được ưu tiên chạy trước
         */
-        Thread th4 = new Thread(new SychrozationThread1());
-        Thread th5 = new Thread(new Thread(new SynchrozationThread2()));
-        th4.start();
-        th5.start();
         /*
         Dead lock hiên tượng chết dí xuất hiện khi hai thread cùng đợi nhau nên k chạy được => infinity
         

@@ -16,14 +16,14 @@ public class Thread2 extends Thread{
 
     @Override
     public void run() {
-        while (true) {            
-            System.out.println("Lmao");
+        for (int i = 0; i < 10; i++) {
+            System.out.println("lmao");
             try {
-                Thread.sleep(1000);
+                sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Thread2.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        }
     }
     
-}
