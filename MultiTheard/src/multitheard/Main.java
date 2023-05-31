@@ -33,6 +33,7 @@ public class Main {
         th1.start();
         th2.start();
         /*
+        Lý thuyết tổng hợp bởi Hoang Dung PH 35753
         các trang thái của thread 
         1. new tạo thread nhưng chưa có runnable
         2. ready tạo thread có runnable chờ được start();
