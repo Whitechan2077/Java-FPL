@@ -133,7 +133,7 @@ public class LinkedList_DS {
         }//test với warpper 
         //Test vơí object
         
-//        LinkedList<MyClass> ls3 = new LinkedList<>();
+        LinkedList<String> ls3 = new LinkedList<>();
 //        ls3.add(new MyClass(0));
 //        ls3.add(new MyClass(1));
 //        ls3.add(new MyClass(2));
@@ -143,5 +143,10 @@ public class LinkedList_DS {
 //        ls4.forEach((t) -> {
 //            System.out.println(t);
 //        });
+System.out.println("----------------------------------");
+           ls3 =  (LinkedList<String>) ls.clone();
+           ls3.forEach((t) -> {
+               System.out.println(t);
+           });
     }
 }
