@@ -116,6 +116,7 @@ public class LinkedList_DS {
             iterator(): Trả về một đối tượng Iterator để duyệt qua danh sách.
         6.clear all
             clear(); xóa tất
+        7.clone() sao chép all;
         */
         Iterator inter = ls.iterator();
         while(inter.hasNext()){
