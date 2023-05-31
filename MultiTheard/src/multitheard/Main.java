@@ -36,10 +36,14 @@ public class Main {
             public void run() {
                 System.out.println("Dang tìm gái gọi");
             }
-        });
+       });
         th4.start();
         th4.join();
-        th1.start();
+//        th1.start();
+        SychrozationThread1 sychrozation = new SychrozationThread1();
+        Thread th5 = new Thread(sychrozation);
+        Thread th6 = new Thread(sychrozation);
+        th6.start();
         /*
         Lý thuyết tổng hợp bởi Hoang Dung PH 35753
         các trang thái của thread 
