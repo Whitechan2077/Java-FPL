@@ -21,8 +21,7 @@ public class Generic {
         quy ước đặt tên generics 
         T,V,E,K,N
         Generics không thể có static 
-        không thể tạo mảng với generics
-        
+        không thể tạo mảng với generics        
         */
         GenericClass generics1 = new GenericClass("Lmao",23);
         GenericClass<String,Integer> generics2 = new GenericClass<>("lmao",123);
