@@ -6,6 +6,7 @@ package linkedlist;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.function.Consumer;
 
 /**
  *
@@ -48,14 +49,26 @@ public class LinkedList_DS {
         2.Chiếm dụng bộ nhớ: LinkedList sử dụng thêm bộ nhớ để lưu trữ các tham chiếu (references) 
         giữa các node, làm tăng tổng lượng bộ nhớ được sử dụng so với ArrayList.
         */
+       
+        //Add
         ls.add("A");
         ls.add("B");
         ls.add("C");
         ls.add("D");
-        ls.removeFirst();
-        ls.removeLast();
         ls.addFirst("L");
         ls.addLast("O");
+        
+        //Remove
+        System.out.println(ls.remove());
+        ls.removeFirstOccurrence("D");
+        ls.removeLast();
+        ls.removeFirst();
+        
+        //gets
+        System.out.println(ls.get(0));
+        
+        
+        
         /*
         1.add
             add(element): Thêm phần tử vào cuối danh sách.
@@ -86,5 +99,12 @@ public class LinkedList_DS {
         while(inter.hasNext()){
             System.out.println(inter.next());
         }
+        ls.forEach((String t) -> {
+            System.out.println(t);
+        });
+        ls.clear();
+        ls.forEach((t) -> {
+            System.out.println(t);
+        });
     }
 }
