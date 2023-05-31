@@ -5,17 +5,17 @@
 package my_class;
 
 import java.io.Serializable;
+import java.util.Scanner;
 
 /**
  *
  * @author buidu
  */
-public class MyClass implements Serializable{
+public class MyClass{
     private int number;
 
     public MyClass(int number) {
         this.number = number;
     }
-    
     
 }
