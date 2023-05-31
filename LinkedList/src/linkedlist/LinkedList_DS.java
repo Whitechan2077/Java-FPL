@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.function.Consumer;
+import my_class.MyClass;
 
 /**
  *
@@ -120,15 +121,27 @@ public class LinkedList_DS {
         while(inter.hasNext()){
             System.out.println(inter.next());
         }
+        System.out.println("---------------------------");
         ls.forEach((String t) -> {
             System.out.println(t);
         });
-        
+        System.out.println("---------------------");
         write(ls,"data.dat");
         ls2 = (LinkedList<String>)read("data.dat");
         for (String string : ls2) {
             System.out.println(string);
-        }
+        }//test với warpper 
+        //Test vơí object
         
+//        LinkedList<MyClass> ls3 = new LinkedList<>();
+//        ls3.add(new MyClass(0));
+//        ls3.add(new MyClass(1));
+//        ls3.add(new MyClass(2));
+//        write(ls3,"obj.dat");
+//        LinkedList<MyClass> ls4 = new LinkedList<>();
+//        ls4 = (LinkedList<MyClass>) read("obj.dat");
+//        ls4.forEach((t) -> {
+//            System.out.println(t);
+//        });
     }
 }
