@@ -39,6 +39,15 @@ public class LinkedList_DS {
         phần tử ở đầu và cuối danh sách một cách hiệu quả. Với việc chỉ cần thay đổi các tham chiếu, 
         không cần di chuyển các phần tử, LinkedList thực hiện các thao tác này nhanh chóng.
         */
+        
+        /*
+        ---Ngu
+        1.Truy cập ngẫu nhiên chậm hơn: Truy cập phần tử ở vị trí ngẫu nhiên trong 
+        LinkedList yêu cầu phải truy cập từ đầu danh sách và di chuyển qua các node.
+        Trong khi đó, ArrayList cho phép truy cập ngẫu nhiên nhanh hơn vì nó sử dụng mảng động
+        2.Chiếm dụng bộ nhớ: LinkedList sử dụng thêm bộ nhớ để lưu trữ các tham chiếu (references) 
+        giữa các node, làm tăng tổng lượng bộ nhớ được sử dụng so với ArrayList.
+        */
         ls.add("A");
         ls.add("B");
         ls.add("C");
