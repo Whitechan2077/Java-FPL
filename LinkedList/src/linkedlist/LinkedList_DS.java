@@ -54,6 +54,8 @@ public class LinkedList_DS {
         ls.add("D");
         ls.removeFirst();
         ls.removeLast();
+        ls.addFirst("L");
+        ls.addLast("O");
         /*
         1.add
             add(element): Thêm phần tử vào cuối danh sách.
