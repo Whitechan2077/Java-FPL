@@ -52,6 +52,8 @@ public class LinkedList_DS {
         ls.add("B");
         ls.add("C");
         ls.add("D");
+        ls.removeFirst();
+        ls.removeLast();
         /*
         1.add
             add(element): Thêm phần tử vào cuối danh sách.
@@ -78,7 +80,6 @@ public class LinkedList_DS {
         6.clear all
             clear(); xóa tất
         */
-        System.out.println(ls.peek());
         Iterator inter = ls.iterator();
         while(inter.hasNext()){
             System.out.println(inter.next());
