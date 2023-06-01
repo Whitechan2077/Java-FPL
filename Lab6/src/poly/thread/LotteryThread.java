@@ -14,6 +14,10 @@ import javax.swing.JTextField;
  */
 public class LotteryThread implements Runnable{
     private JTextField txtNumber;
+
+    public LotteryThread(JTextField txtNumber) {
+        this.txtNumber = txtNumber;
+    }
     @Override
     public void run() {
         for (int i = 0; i < 10; i++) {
