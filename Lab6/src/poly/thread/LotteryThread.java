@@ -12,16 +12,17 @@ import javax.swing.JTextField;
  *
  * @author buidu
  */
-public class LottetyThread implements Runnable{
+public class LotteryThread implements Runnable{
     private JTextField txtNumber;
     @Override
     public void run() {
         for (int i = 0; i < 10; i++) {
              int randomNumber = (int) Math.round( Math.random()*9);
+             txtNumber.setText(String.valueOf(randomNumber));
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
-                Logger.getLogger(LottetyThread.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LotteryThread.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
