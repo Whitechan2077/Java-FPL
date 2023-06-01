@@ -10,4 +10,12 @@ package emum;
  */
 public class Enum {
     
+    public enum Tranport{
+        CAR, TRUCK, AIRPLANE, TRAIN, BOAT;
+    }
+    
+    public static void main(String[] args) {
+        // emun là dt chứa các hầng số
+        
+    }
 }
