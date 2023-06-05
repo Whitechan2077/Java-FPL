@@ -55,6 +55,6 @@ public class Enum {
     public static void main(String[] args) {
         Tranport tp;
         tp = Tranport.AIRPLANE;
-        System.out.println(tp.ordinal());
+        System.out.println(tp.getName());
     }
 }
