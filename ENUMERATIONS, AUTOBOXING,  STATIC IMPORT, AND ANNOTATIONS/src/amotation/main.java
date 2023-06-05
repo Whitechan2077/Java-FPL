@@ -5,15 +5,30 @@
 package amotation;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 
 /**
  *
  * @author buidu
  */
 public class main {
-    public static void main(String[] args) {
-        Class aclass = Class_student.class;
-        Annotation [] ano = aclass.getAnnotations();
-        
+
+    public static void main(String[] args) throws NoSuchMethodException {
+        Class<?> c = Class_student.class;
+        Class[] aarg = new Class[2];
+        aarg[0] = String.class;
+        aarg[1] = String.class;
+        Method m = c.getMethod("doSomethingElse", aarg);
+        Annotation[][] parameterAnnotations = m.getParameterAnnotations();
+        Class[] parameterTypes = m.getParameterTypes();
+        int i = 0;
+        for (Annotation[] parameterAnnotation : parameterAnnotations) {
+            Class parameterType = parameterTypes[i++];
+            for (Annotation annotation : parameterAnnotation) {
+                System.out.println(annotation.annotationType());
+                System.out.println(annotation.toString());
+
+            }
+        }
     }
 }
