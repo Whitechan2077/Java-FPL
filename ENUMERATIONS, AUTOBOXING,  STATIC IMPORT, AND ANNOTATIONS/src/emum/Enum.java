@@ -11,11 +11,17 @@ package emum;
 public class Enum {
     
     public enum Tranport{
-        CAR, TRUCK, AIRPLANE, TRAIN, BOAT;
+        CAR(65), TRUCK(55), AIRPLANE(600), TRAIN(70), BOAT(22);
+        private final int speed;
+
+        private Tranport(int speed) {
+            this.speed = speed;
+        }
     }
     
     public static void main(String[] args) {
-        // emun là dt chứa các hầng số
-        
+        Tranport tp;
+        tp = Tranport.AIRPLANE;
+        System.out.println(tp.ordinal());
     }
 }

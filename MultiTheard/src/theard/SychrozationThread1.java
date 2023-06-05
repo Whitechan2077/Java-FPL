@@ -16,9 +16,10 @@ public class SychrozationThread1 implements Runnable{
     @Override
     public synchronized void run() {
        int i = 0;
-        while (i<=10) {            
+        while (i<=5) {            
              System.out.println("Tao cũng yêu cả Ganyu nữa");
              i++;
+             notify();
            try {
                Thread.sleep(1000);
            } catch (InterruptedException ex) {

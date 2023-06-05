@@ -4,6 +4,9 @@
  */
 package theard;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author buidu
@@ -12,7 +15,15 @@ public class SynchrozationThread2 implements Runnable{
 
     @Override
     public synchronized void run() {
-        System.out.println("Tao thích Mahiro");
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Lmao");
+            try {
+                wait();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(SynchrozationThread2.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
+
     
 }

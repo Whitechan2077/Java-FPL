@@ -28,22 +28,24 @@ public class Main {
 //            Thread th3 = new Thread(() -> {
 //            System.out.println("Bố mày là thread nặc danh");
 //        });
-        th2.start();
-        th2.join();
-        th3.start();
+//        th2.start();
+//        th2.join();
+//        th3.start();
         Thread th4 = new Thread(new Runnable() {
             @Override
             public void run() {
                 System.out.println("Dang tìm gái gọi");
             }
        });
-        th4.start();
-        th4.join();
+//        th4.start();
+//        th4.join();
 //        th1.start();
         SychrozationThread1 sychrozation = new SychrozationThread1();
         Thread th5 = new Thread(sychrozation);
-        Thread th6 = new Thread(sychrozation);
-        th6.start();
+        Thread th6 = new Thread(new SynchrozationThread2());
+        th5.start();
+                th6.start();
+
         /*
         Lý thuyết tổng hợp bởi Hoang Dung PH 35753
         các trang thái của thread 
