@@ -3,9 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package amotation;
-
-import java.lang.annotation.Retention;
-@MyAno (value = "12",owner = "Ana")
+@MyAno(value = "anna",owner = "2")
 public class Class_student {
     
 }
