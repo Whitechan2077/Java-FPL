@@ -19,7 +19,6 @@ public class GenericsLimitedDataTuye <T extends Number>{
     public T getNumber() {
         return number;
     }
-
     public void setNumber(T number) {
         this.number = number;
     }       
