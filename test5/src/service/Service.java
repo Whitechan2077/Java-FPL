@@ -12,18 +12,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import model.Customs;
+import model.Customer;
 /**
  *
  * @author buidu
  */
 public class Service {
-    private List<Customs> listCustom = new ArrayList<>();
+    private List<Customer> listCustom = new ArrayList<>();
 
-    public List<Customs> getListCustom() {
+    public List<Customer> getListCustom() {
         return listCustom;
     }
-    public void add(Customs c){
+    public void add(Customer c){
         this.listCustom.add(c);
     }
     public void write(String path) throws FileNotFoundException, IOException{
@@ -37,7 +37,7 @@ public class Service {
         ObjectInputStream  ois;
         try (FileInputStream fis = new FileInputStream(path)) {
             ois = new ObjectInputStream(fis);
-            this.listCustom = (List<Customs>) ois.readObject();
+            this.listCustom = (List<Customer>) ois.readObject();
         }
         ois.close();
     }

@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import service.Service;
-import model.Customs;
+import model.Customer;
 /**
  *
  * @author buidu
@@ -26,10 +26,10 @@ public class View extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     public void load(){
-        sv.getListCustom().add(new Customs("Nguyễn Thúy Hằng", 18,"Nữ"));
-        sv.getListCustom().add(new Customs("Nguyễn Anh Dũng",20,"Nam"));
-        sv.getListCustom().add(new Customs("Vũ Văn Nguyên",21,"Nam"));
-        sv.getListCustom().add(new Customs("Trần Tuấn Phong",21,"Nam"));
+        sv.getListCustom().add(new Customer("Nguyễn Thúy Hằng", 18,"Nữ"));
+        sv.getListCustom().add(new Customer("Nguyễn Anh Dũng",20,"Nam"));
+        sv.getListCustom().add(new Customer("Vũ Văn Nguyên",21,"Nam"));
+        sv.getListCustom().add(new Customer("Trần Tuấn Phong",21,"Nam"));
         filltoTable();
         fillDataToForm(sv.getListCustom().size()-1);
     }
@@ -37,7 +37,7 @@ public class View extends javax.swing.JFrame {
         DefaultTableModel model =  (DefaultTableModel) tblCustoms.getModel();
         model.setRowCount(0);
         int i =1;
-        for (Customs x : sv.getListCustom()) {
+        for (Customer x : sv.getListCustom()) {
             model.addRow(new Object[]{i++,x.getName(),x.getTuoi(),x.getSex()});
         }
     }
@@ -53,17 +53,17 @@ public class View extends javax.swing.JFrame {
     public void add(){
         if (txtxName.getText().trim().equalsIgnoreCase("")) {
                     if (rdoMale.isSelected()) {
-            sv.add(new Customs(generateRandomString(),Integer.parseInt(txtAge.getText()),rdoMale.getText()));
+            sv.add(new Customer(generateRandomString(),Integer.parseInt(txtAge.getText()),rdoMale.getText()));
         }
         else
-           sv.add(new Customs(generateRandomString(),Integer.parseInt(txtAge.getText()),rdoFemale.getText()));
+           sv.add(new Customer(generateRandomString(),Integer.parseInt(txtAge.getText()),rdoFemale.getText()));
         }
         else{
                 if (rdoMale.isSelected()) {
-            sv.add(new Customs(txtxName.getText(),Integer.parseInt(txtAge.getText()),rdoMale.getText()));
+            sv.add(new Customer(txtxName.getText(),Integer.parseInt(txtAge.getText()),rdoMale.getText()));
         }
         else
-           sv.add(new Customs(txtxName.getText(),Integer.parseInt(txtAge.getText()),rdoFemale.getText()));
+           sv.add(new Customer(txtxName.getText(),Integer.parseInt(txtAge.getText()),rdoFemale.getText()));
         }
     }
     public void save() throws IOException{

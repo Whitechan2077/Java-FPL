@@ -10,12 +10,12 @@ import java.io.Serializable;
  *
  * @author buidu
  */
-public class Customs implements Serializable{
+public class Customer implements Serializable{
     private String name;
     private int tuoi;
     private String sex;
 
-    public Customs(String name, int tuoi, String sex) {
+    public Customer(String name, int tuoi, String sex) {
         this.name = name;
         this.tuoi = tuoi;
         this.sex = sex;
