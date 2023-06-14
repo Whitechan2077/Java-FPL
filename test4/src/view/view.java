@@ -5,6 +5,7 @@
 package view;
 
 import java.io.IOException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,6 +20,8 @@ import service.Service;
 public class view extends javax.swing.JFrame {
 
     private Service sv = new Service();
+    String randomString = generateRandomString();
+
 
     /**
      *
@@ -57,13 +60,43 @@ public class view extends javax.swing.JFrame {
     }
 
     public void add() {
-        if (rdoMale.isSelected()) {
+        if (txtName.getText().trim().equalsIgnoreCase("")) {
+            if (rdoMale.isSelected()) {
+            sv.add(new Custom(generateRandomString(), String.valueOf(rdoMale.getText()), Integer.parseInt(txtAge.getText())));
+
+        } else {
+            sv.add(new Custom(generateRandomString(), String.valueOf(rdoFemale.getText()), Integer.parseInt(txtAge.getText())));
+        }
+        JOptionPane.showMessageDialog(this, "Add completed");
+        }
+        else{
+                if (rdoMale.isSelected()) {
             sv.add(new Custom(txtName.getText(), String.valueOf(rdoMale.getText()), Integer.parseInt(txtAge.getText())));
 
         } else {
             sv.add(new Custom(txtName.getText(), String.valueOf(rdoFemale.getText()), Integer.parseInt(txtAge.getText())));
         }
         JOptionPane.showMessageDialog(this, "Add completed");
+            
+        }
+    }
+    private char getRandomSpecialCharOrNumber(Random random) {
+        String specialCharsAndNumbers = "!@#$%^&*()0123456789";
+        return specialCharsAndNumbers.charAt(random.nextInt(specialCharsAndNumbers.length()));
+    }
+    public String generateRandomString() {
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < 3; i++)
+            sb.append((char) (random.nextInt(26) + 'A'));
+
+        for (int i = 0; i < 2; i++)
+            sb.append((char) (random.nextInt(26) + 'a'));
+
+        sb.append(getRandomSpecialCharOrNumber(random));
+
+        return sb.toString();
     }
 
     /**
@@ -168,9 +201,6 @@ public class view extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -185,7 +215,9 @@ public class view extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtName)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtName))))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnAdd)
