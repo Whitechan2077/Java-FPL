@@ -18,7 +18,6 @@ import model.Customers;
  */
 public class Service {
     private List<Customers> listCustomer = new ArrayList<>();
-
     public List<Customers> getListCustomer() {
         return listCustomer;
     }
